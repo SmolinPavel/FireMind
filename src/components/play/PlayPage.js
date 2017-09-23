@@ -13,11 +13,6 @@ export class PlayPage extends React.Component {
       level: defaultValues.level,
       answer: ''
     };
-    this.focus = this.focus.bind(this);
-  }
-
-  focus() {
-    this.textInput.focus();
   }
 
   checkAnswer() {
@@ -26,7 +21,10 @@ export class PlayPage extends React.Component {
     } else {
       this.setState(utils.generateStateByLevel(this.state.level, 'down'));
     }
-    this.focus();
+  }
+
+  componentDidMount() {
+    this.textInput.focus();
   }
 
   render() {
