@@ -1,6 +1,8 @@
 import React from 'react';
 import utils from './playUtils';
 import defaultValues from './defaultValues';
+import toastr from 'toastr';
+toastr.options.timeOut = 1000;
 
 export class PlayPage extends React.Component {
   constructor(props, context) {
@@ -17,8 +19,10 @@ export class PlayPage extends React.Component {
 
   checkAnswer() {
     if (this.state.answer == utils.mathMySign[this.state.sign](this.state.left, this.state.right)) {
+      toastr.success('You are rigth!');
       this.setState(utils.generateStateByLevel(this.state.level, 'up'));
     } else {
+      toastr.error('Wrong answer :(');
       this.setState(utils.generateStateByLevel(this.state.level, 'down'));
     }
   }
